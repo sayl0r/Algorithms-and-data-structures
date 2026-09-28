@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
+#include <windows.h>
 
-// ==================== STORE — SINGLETON ====================
 class Store {
     std::string name;
     static Store* instance;          // статическое поле-одиночка
@@ -16,7 +16,6 @@ public:
 };
 Store* Store::instance = nullptr;
 
-// ==================== PURCHASE — КОМПОЗИЦИЯ ====================
 class Purchase {
     std::string product;
     Store& store;                    // ссылка — без магазина не создать
@@ -33,7 +32,6 @@ public:
 };
 int Purchase::count = 0;
 
-// ==================== CUSTOMER — АГРЕГАЦИЯ ====================
 class Customer {
     std::string name;
     Store* store = nullptr;          // указатель — может быть nullptr
@@ -51,8 +49,9 @@ public:
     }
 };
 
-// ==================== ДЕМОНСТРАЦИЯ ====================
 int main() {
+    SetConsoleOutputCP(65001);
+    SetConsoleCP(65001);
     // Singleton: два вызова — один объект
     Store* s1 = Store::getInstance();
     Store* s2 = Store::getInstance();
